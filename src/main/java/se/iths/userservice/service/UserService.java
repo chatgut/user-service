@@ -8,6 +8,8 @@ import se.iths.userservice.dto.UserDTO;
 import se.iths.userservice.entities.UserEntity;
 import se.iths.userservice.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -43,6 +45,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public List<UserDTO> getAllUsers() {
+        List<UserEntity> userEntities = userRepository.findAll();
+        return userEntities.stream().map(this::convertToUserDTO).toList();
+    }
+    
     private UserEntity convertToUserEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userDTO.getUsername());
