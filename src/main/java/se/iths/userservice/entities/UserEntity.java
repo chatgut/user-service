@@ -19,11 +19,11 @@ public class UserEntity {
     private String username;
 
     @Column(name = "first_name", nullable = false)
-    String firstName;
+    private String firstName;
 
     @Column(name = "last_name", nullable = false)
-    String lastName;
+    private String lastName;
 
     @Column(name = "image_url")
-    String imageUrl;
+    private String imageUrl;
 }
