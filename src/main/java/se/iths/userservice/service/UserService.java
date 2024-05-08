@@ -54,6 +54,7 @@ public class UserService {
 
     private UserDTO convertToUserDTO(UserEntity userEntity) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(userEntity.getId());
         userDTO.setUsername(userEntity.getUsername());
         userDTO.setFirstName(userEntity.getFirstName());
         userDTO.setLastName(userEntity.getLastName());
