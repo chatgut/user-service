@@ -1,10 +1,24 @@
 services:
-  mysql:
-    image: 'mysql:latest'
+  app:
+    image: maxiths/userservice:latest
+    depends_on:
+      - mysql
+    ports:
+      - 8037:8080
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/userservicedatabase
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: secret
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PLATFORM: mysql
+    restart: on-failure
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: userservicedatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: rootsecret
     ports:
       - '3306:3306'
