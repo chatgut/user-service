@@ -1,6 +1,6 @@
 package se.iths.userservice.controller;
 
-import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
 import se.iths.userservice.dto.UserDTO;
 import se.iths.userservice.service.UserService;
@@ -35,6 +35,11 @@ public class UserController {
     @PutMapping
     public UserDTO updateUser(@RequestBody UserDTO userDTO) {
         return userService.updateUser(userDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
     }
 
 }
